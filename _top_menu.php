@@ -1,3 +1,4 @@
+<!-- topbar starts -->
 <?php
 $user_id=$this->session->userdata('user_id');
 			$role_permission_id=$this->session->userdata('role_permission_id');
@@ -6,7 +7,7 @@ $user_id=$this->session->userdata('user_id');
 			
 			$regionalStoreData_res = $this->db->select('*')->from('regional_store_master')->where(array('regional_store_id'=>$user_role_data->regional_store_id))->get()->row();
 			 
-			?><!-- topbar starts -->
+			?>
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-inner">
             <button type="button" class="navbar-toggle pull-left collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -35,7 +36,6 @@ $user_id=$this->session->userdata('user_id');
 					{
 						$arr_header_ci_st[]=getStateName($office_data->state_id);
 					}
-					$str_header_ci_st='';
 					if(count($arr_header_ci_st)>0)
 					{
 						$str_header_ci_st=implode(', ',$arr_header_ci_st);
@@ -109,6 +109,10 @@ $user_id=$this->session->userdata('user_id');
 					<li><a href="#">Maker and Authorizer</a></li>
 				</ul>
 			</li> -->
+			<?php
+			//if($user_role_data->regional_store_id=='0')
+			//{
+				?>
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				<i class="glyphicon glyphicon-user"></i><span>User/Role Management</span></a>
@@ -166,20 +170,55 @@ $user_id=$this->session->userdata('user_id');
 					<li><a href="<?php echo base_url();?>masterForm/back_date_listing">Back Date Invoice</a></li>
 				</ul>
 			</li>
+			
+			
+			   <li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				<i class="glyphicon glyphicon-list-alt"></i><span>Sanchi Master forms</span></a>
+				<ul class="dropdown-menu">
+					<!--<li><a href="<?php echo base_url();?>masterForm/bg_master_list">Bank  Guarantee Master</a></li>-->
+					<li><a href="<?php echo base_url();?>masterForm/raw_material_list">Raw Material Master</a></li>
+					<li><a href="<?php echo base_url();?>masterForm/notion_Price_list">Notional Price</a></li>
+					<!--<li role="presentation" class="dropdown-submenu">
+						<a class="dropdown-toggle" data-toggle="dropdown-submenu" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="my-span"> Product Management &gt;</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<?php echo base_url();?>Sanchi_master/unit_master">Unit Of Measurement Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/metal_maste">Metal Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_category_master">Product Category Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_sub_category_master">Product Sub-category Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_type_master">Product Type Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_master_list">Product Master</a></li>
+						</ul>
+					</li>-->
+				</ul>
+			</li>
+			
+			<?php
+			//}
+			?>
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				<i class="glyphicon glyphicon-list"></i><span> Reports</span></a>
 				<ul class="dropdown-menu">
+				<?php
+				//if($user_role_data->regional_store_id=='0')
+				//{
+				?>
 					<li><a href="<?php echo base_url();?>report/admin_allreport">Stock Ledger</a></li>
+					<?php
+				//}
+				?>
 					<?php  //if(in_array('31',$user_page_access_array)){ ?>
 					<li><a href="<?php echo base_url();?>report/admin_transactionreport">Transaction</a></li>
 				    <?php// } ?>
 					<li><a href="<?php echo base_url();?>report/salesReport">Sales Report</a></li>
 					
 					<?php  //if(in_array('31',$user_page_access_array)){ ?>
+					
 					<li><a href="<?php echo base_url();?>report/scheduleReport">Schedule Report</a></li>
 					<li><a href="<?php echo base_url();?>report/paymentModeReport">Payment Mode Report</a></li>
 					<li><a href="<?php echo base_url();?>report/price_report">Price Report</a></li>
+				
 					<?php
 					/*
 					<li><a href="<?php echo base_url();?>report/dailyStatementReport">Daily Statement Report</a></li> 
@@ -214,7 +253,8 @@ $user_id=$this->session->userdata('user_id');
         <?php if($this->session->userdata('role_id') == '1'){ ?>
 		<ul class="nav navbar-nav">
 			<li class="active"> <a href="<?php echo base_url();?>user/dashboard"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a> </li>
-			<?php  if(in_array('1',$user_page_access_array)){
+			<?php  if(in_array('1',$user_page_access_array)){?>
+			<?php
 				if($user_role_data->regional_store_id=='0')
 				{
 				?>
@@ -227,10 +267,11 @@ $user_id=$this->session->userdata('user_id');
 				</ul>
 			</li>
 				<?php } } ?>
-			<?php  if(in_array('2',$user_page_access_array) || in_array('3',$user_page_access_array) || in_array('4',$user_page_access_array) || in_array('5',$user_page_access_array) || in_array('6',$user_page_access_array) || in_array('7',$user_page_access_array) || in_array('8',$user_page_access_array) || in_array('9',$user_page_access_array) || in_array('10',$user_page_access_array) || in_array('11',$user_page_access_array) || in_array('12',$user_page_access_array) || in_array('13',$user_page_access_array) || in_array('14',$user_page_access_array) || in_array('15',$user_page_access_array) || in_array('16',$user_page_access_array) || in_array('17',$user_page_access_array) || in_array('32',$user_page_access_array) || in_array('33',$user_page_access_array) ){ 
-			if($user_role_data->regional_store_id=='0')
+			<?php  if(in_array('2',$user_page_access_array) || in_array('3',$user_page_access_array) || in_array('4',$user_page_access_array) || in_array('5',$user_page_access_array) || in_array('6',$user_page_access_array) || in_array('7',$user_page_access_array) || in_array('8',$user_page_access_array) || in_array('9',$user_page_access_array) || in_array('10',$user_page_access_array) || in_array('11',$user_page_access_array) || in_array('12',$user_page_access_array) || in_array('13',$user_page_access_array) || in_array('14',$user_page_access_array) || in_array('15',$user_page_access_array) || in_array('16',$user_page_access_array) || in_array('17',$user_page_access_array) || in_array('32',$user_page_access_array) || in_array('33',$user_page_access_array) ){?>
+			<?php
+				if($user_role_data->regional_store_id=='0')
 				{
-			?>
+				?>
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				<i class="glyphicon glyphicon-list-alt"></i><span> Master forms</span></a>
@@ -318,6 +359,34 @@ $user_id=$this->session->userdata('user_id');
 				</ul>
 			</li>
 				<?php } } ?>
+			<?php
+				if($user_role_data->regional_store_id=='0')
+				{
+				?>
+			 <li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				<i class="glyphicon glyphicon-list-alt"></i><span>Sanchi Master forms</span></a>
+				<ul class="dropdown-menu">
+					<!--<li><a href="<?php echo base_url();?>masterForm/bg_master_list">Bank  Guarantee Master</a></li>-->
+					<li><a href="<?php echo base_url();?>masterForm/raw_material_list">Raw Material Master</a></li>
+					<li><a href="<?php echo base_url();?>masterForm/notion_Price_list">Notional Price</a></li>
+					<!--<li role="presentation" class="dropdown-submenu">
+						<a class="dropdown-toggle" data-toggle="dropdown-submenu" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="my-span"> Product Management &gt;</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<?php echo base_url();?>Sanchi_master/unit_master">Unit Of Measurement Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/metal_maste">Metal Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_category_master">Product Category Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_sub_category_master">Product Sub-category Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_type_master">Product Type Master</a></li>
+							<li><a href="<?php echo base_url();?>Sanchi_master/product_master_list">Product Master</a></li>
+						</ul>
+					</li>-->
+				</ul>
+			</li>
+			
+			<?php
+			}
+			?>
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				<i class="glyphicon glyphicon-list"></i><span> Reports</span></a>
@@ -325,20 +394,28 @@ $user_id=$this->session->userdata('user_id');
 				<?php
 				if($user_role_data->regional_store_id=='0')
 				{
-					?>
+				?>
 					<li><a href="<?php echo base_url();?>report/admin_allreport">Stock Ledger</a></li>
+					<?php
+				}
+				?>
 					<?php  //if(in_array('31',$user_page_access_array)){ ?>
-				<?php
-					}
-					?>
 					<li><a href="<?php echo base_url();?>report/admin_transactionreport">Transaction</a></li>
 				    <?php// } ?>
 					<li><a href="<?php echo base_url();?>report/salesReport">Sales Report</a></li>
 					<?php  //if(in_array('31',$user_page_access_array)){ ?>
+				<?php
+				//if($user_role_data->regional_store_id=='0')
+			//	{
+				?>
 					<li><a href="<?php echo base_url();?>report/scheduleReport">Schedule Report</a></li>
 					<li><a href="<?php echo base_url();?>report/paymentModeReport">Payment Mode Report</a></li>
 					<li><a href="<?php echo base_url();?>report/price_report">Price Report</a></li>
+				
 					<li><a href="<?php echo base_url();?>report/adminTransactionTaxReport">Tax Transaction Report</a></li>
+				<?php
+				//}
+				?>
 					<?php
 					/*
 					<li><a href="<?php echo base_url();?>report/dailyStatementReport">Daily Statement Report</a></li> 
@@ -349,17 +426,14 @@ $user_id=$this->session->userdata('user_id');
 					<li><a href="<?php echo base_url();?>report/saleInventoryReportdetail">Sale & Inventory Detail Report</a></li>
 				</ul>
 			</li>
-		</ul>
+			
+			
 	    <?php 
 		
 		}
 
 		else if($this->session->userdata('role_id') == '2'){ 
-		
-		
-		// for store manager
-		
-		
+		// for store manager		
 		?>
 		<ul class="nav navbar-nav">
 			<li class="active"> <a href="<?php echo base_url();?>user/dashboard"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a> </li>
@@ -385,8 +459,78 @@ $user_id=$this->session->userdata('user_id');
 				<?php } ?>
 				</ul>
 			</li>
-			<?php } ?>
-			<?php  if(in_array('23',$user_page_access_array) ){?>
+			<?php }     ?>
+			<li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				<i class="glyphicon glyphicon-edit"></i><span>Sanchi Inventory</span></a>
+				<ul class="dropdown-menu">
+					
+					<li><a href="<?php echo base_url();?>sanchiInventory/stock_transfer_inventory"> Stock Transfer/Issue</a></li>
+					<li><a href="<?php echo base_url();?>sanchiInventory/stock_receipt_inventory"> Stock Receipt</a></li>
+					<?php
+					if($this->session->userdata("office_id") == "129")
+					{ 
+					?>
+					<li><a href="<?php echo base_url();?>sanchi_master/material_issue_for_polishing_list"> Material Issue for Polishing</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/material_receive_after_polishing_list">Material Receive After Polishing </a></li>
+					<?php 
+					}
+					?>
+				</ul>
+			</li>
+			
+			
+		<?php  	if($this->session->userdata("office_id") == "19"){
+			?>
+			<li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				<i class="glyphicon glyphicon-edit"></i><span> Sanchi Procurement</span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<?php echo base_url();?>sanchi_master/raw_material_receipt_list"> Raw Material Receipt</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/bg_details_list">BG Details</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/work_order_list">Work Order</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/raw_material_issue_list">Raw Material Issue</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/receive_finish_goods_list">Receive Finished Goods</a></li>
+					<li role="presentation" class="dropdown-submenu">
+					         	<a class="dropdown-toggle" data-toggle="dropdown-submenu" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="my-span"> A & H     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;             &gt;</span></a>
+					<ul class="dropdown-menu">
+									<li><a href="<?php echo base_url();?>sanchi_master/issue_to_assaying_list">Issue To Assaying</a></li>
+									<li><a href="<?php echo base_url();?>sanchi_master/receive_from_assaying_list"> Receive From Assaying</a></li>
+									<li><a href="<?php echo base_url();?>sanchi_master/issue_to_hallmarking_list">Issue To Hallmarking</a></li>
+									<li><a href="<?php echo base_url();?>sanchi_master/receive_from_hallmarking_list"> Receive From Hallmarking</a></li>
+						
+					</ul>
+					</li>
+					<!---<li><a href="<?php echo base_url();?>sanchi_master/issue_to_assaying_list">Issue To Assaying</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/receive_from_assaying_list"> Receive From Assaying</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/issue_to_hallmarking_list">Issue To Hallmarking</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/receive_from_hallmarking_list"> Receive From Hallmarking</a></li>--->
+					<li><a href="<?php echo base_url();?>sanchi_master/return_of_rejected_material_list">Return of Rejected Material</a></li>
+					
+					<li><a href="<?php echo base_url();?>sanchi_master/material_issue_for_polishing_list"> Material Issue for Polishing</a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/material_receive_after_polishing_list">Material Receive After Polishing </a></li>
+					<li><a href="<?php echo base_url();?>sanchi_master/snachi_product_current_stock">Sanchi Product Current Stock</a></li>
+				</ul>
+			</li>
+
+             	<li role="presentation" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<i class="glyphicon glyphicon-edit"></i><span> Utility</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<?php echo base_url();?>sanchi_master/generateBarCodeAfterPolishingList">Generate Barcode for Duplicate or No Barcode items</a></li>
+					</ul>
+			    </li>
+				  <li role="presentation" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<i class="glyphicon glyphicon-edit"></i><span> Sanchi Report</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<?php echo base_url();?>sanchi_report/inventory_status_report">Inventory Status Report</a></li>
+						<li><a href="<?php echo base_url();?>sanchi_report/inventory_status_details_report">Inventory Status  Details Report</a></li>
+					</ul>
+			   </li>
+			<?php }
+
+			if(in_array('23',$user_page_access_array) ){?>
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 				<i class="glyphicon glyphicon-edit"></i><span> Reports</span></a>
@@ -441,6 +585,18 @@ $user_id=$this->session->userdata('user_id');
 				</ul>
 			</li>
 			<?php } ?>
+			<li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				<i class="glyphicon glyphicon-edit"></i><span>Sanchi Inventory</span></a>
+				<ul class="dropdown-menu">
+					
+					<li><a href="<?php echo base_url();?>sanchiInventory/stock_transfer_inventory"> Stock Transfer/Issue</a></li>
+					<li><a href="<?php echo base_url();?>sanchiInventory/stock_receipt_inventory"> Stock Receipt</a></li>
+					<li><a href="<?php echo base_url();?>sanchiInvoice/sales_invoice_details">Sales Invoice</a></li>
+					<li><a href="<?php echo base_url();?>sanchiBackDateInvoice/back_date_sales_invoice_details">Back Date Sales Invoice</a></li>
+					
+				</ul>
+			</li>
 			<?php  if(in_array('30',$user_page_access_array) || in_array('31',$user_page_access_array) || in_array('34',$user_page_access_array) ){?>
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -453,7 +609,7 @@ $user_id=$this->session->userdata('user_id');
 					<li><a href="<?php echo base_url();?>report/transactionreport">Transaction</a></li>
 				<?php } ?>
 				<?php  if(in_array('34',$user_page_access_array)){ ?>
-					<li><a href="<?php echo base_url();?>report/tax_report">Tax Master Report</a></li>
+					<li><a href="<?php echo base_url();?>report/tax_report">Tax Master</a></li>
 				<?php } ?>
 					<li><a href="<?php echo base_url();?>report/officeSalesReport">Sales Report</a></li>
 					<li><a href="<?php echo base_url();?>report/price_report">Price Report</a></li>
@@ -463,6 +619,8 @@ $user_id=$this->session->userdata('user_id');
 					<li><a href="<?php echo base_url();?>report/transactionTaxReport">Tax Transaction Report</a></li>
 				</ul>
 			</li>
+			
+			
 			<?php } ?>
 			
 			<?php /*	<li><a href="#"><i class="glyphicon glyphicon-wrench"></i><span> Settings</span></a></li>*/?>
