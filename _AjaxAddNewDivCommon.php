@@ -737,9 +737,9 @@ $already_products=explode(",",$already_products);
 ?>
 
 <div class="row form-group col-lg-12" style="padding:0;" id="sales_invoice_payment_mode-<?php echo $divSize+1;?>">
-								<div class="form-group col-lg-3" style="padding:0">
+								<div class="form-group col-lg-2" style="padding:0">
 									
-									<label class="control-label">Payment Mode :</label>
+									<label class="control-label">Payment Mode</label>
 									<div id="payment_div_id_<?php echo $divSize+1;?>">
 										<select id="payment_mode-<?php echo $divSize+1;?>" name="payment_mode[]" data-rel="chosen" class="form-control" onchange="getcheckcard(this.id,'<?php echo $divSize+1;?>');unselectpayment_mode(this.id,'<?php echo $divSize+1;?>')" >
 										<option value="">Select</option>
@@ -752,9 +752,9 @@ $already_products=explode(",",$already_products);
 									</div>
 									</div>
 								
-								<div class="form-group col-lg-3"  style="width:140px;">
+								<div class="form-group col-lg-2"  style="">
 									<label class="control-label">Amount (Rs.)</label>
-									<input type="text" style="width:120px;" class="form-control" name="payment_mode_amount[]" id="payment_mode_amount_<?php echo $divSize+1;?>" onchange="getTotal_received();" />
+									<input type="text" style="" class="form-control" name="payment_mode_amount[]" id="payment_mode_amount_<?php echo $divSize+1;?>" onchange="getTotal_received();" />
 								</div>
 								<div class="form-group col-lg-3" id="div_card_data_<?php echo $divSize+1;?>" style="display:none;">
 									<label class="control-label" id="lable_card_<?php echo $divSize+1;?>">Card No.</label>
@@ -764,9 +764,16 @@ $already_products=explode(",",$already_products);
 									<label class="control-label" id="lable_card_name<?php echo $divSize+1;?>">Name on Card</label>
 									<input type="text" class="form-control" name="card_check_name[]" id="card_check_name_<?php echo $divSize+1;?>" />
 								</div>
+								
+								 <div class="form-group col-lg-2" id="div_issuing_bank_<?php echo $divSize+1;?>" style="display:none;">
+									<label class="control-label" style="width:73px;" id="lable_issuing_bank_<?php echo $divSize+1;?>">Issu. Bank </label>
+									<input type="text" class="form-control" name="card_issuing_bank[]" id="card_issuing_bank_<?php echo $divSize+1;?>"  />
+								</div>
+								
 								<div class="form-group col-lg-3" id="div_cheque_relese_<?php echo $divSize+1;?>" style="display:none;">
-									<label class="control-label" id="lable_cheque_relese_<?php echo $divSize+1;?>">Cheque Release</label>
+									<label class="control-label" id="lable_cheque_relese_<?php echo $divSize+1;?>">Cheq. Realization (Y/N)</label>
 									<select id="cheque_relese_<?php echo $divSize+1;?>" name="cheque_relese[]"  class="form-control"  >
+										<option value="select">-Select-</option>
 										<option value="0">No</option>
 										<option value="1">Yes</option>
 										</select>
@@ -774,7 +781,7 @@ $already_products=explode(",",$already_products);
 								</div>
 								<div class="form-group col-lg-2" style=" width: 5% !important;"  onclick="removeNewRawPaymentModeSalesInvoice('<?php echo $divSize+1;?>')">
 <label class="control-label" >&nbsp;</label>
-									<a href="#" class="btn btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+									<a href="javascript:void(0);" class="btn btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
 
 								</div>
 							</div>
@@ -856,7 +863,8 @@ if(isset($pageName) && $pageName == "office_role"){ ?>
 										</select>
 									</div>
 
-<?php }?>
+<?php }
+?>
 <?php 
 
 if(isset($pageName) && $pageName == "region_data")
@@ -1069,7 +1077,11 @@ function removeNewRawPaymentModeSalesInvoice(div_id)
 
 		$('#sales_invoice_payment_mode-'+div_id+' input').val('');
 		$('#sales_invoice_payment_mode-'+div_id).html('');
+		
+		
 		getTotal_received();
+		//getcheckcard('payment_mode-'+div_id,div_id);
+		unselectpayment_mode_remove();
 	}
 </script>
 <?php
